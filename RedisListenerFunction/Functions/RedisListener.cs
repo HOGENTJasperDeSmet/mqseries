@@ -7,9 +7,9 @@ namespace RedisListenerFunction.Functions
 	public static class RedisListener
 	{
 		[Function("RedisConsumer")]
-		public static void HandleRedisMessage([RedisTrigger("localhost:5789", "test1234")] StreamEntry entry)
+		public static void HandleRedisMessage([RedisTrigger("localhost:5789", "test1234")] string entry)
 		{
-			Console.WriteLine($"{entry.Id} - {entry.Values[0].Name}:{entry.Values[0].Value}");
+			Console.WriteLine($"{entry}");
 		}
 	}
 }

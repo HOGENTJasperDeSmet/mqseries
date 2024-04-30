@@ -15,7 +15,7 @@ namespace RedisListener.Binding
 	// Creates a listener and binds data to the result
 	internal class RedisListenerTriggerBinding : ITriggerBinding
 	{
-		public Type TriggerValueType { get; } = typeof(StreamEntry);
+		public Type TriggerValueType { get; } = typeof(String);
 
 		public IReadOnlyDictionary<string, Type> BindingDataContract { get; } = CreateBindingDataContract();
 
@@ -31,7 +31,7 @@ namespace RedisListener.Binding
 
 		public Task<ITriggerData> BindAsync(object value, ValueBindingContext context)
 		{
-			var streamEntry = (StreamEntry) value;
+			var streamEntry = (String) value;
 			var valueBinder = new RedisTriggerValueProvider(streamEntry, _parameterType);
 			return Task.FromResult<ITriggerData>(new TriggerData(valueBinder, CreateBindingData(streamEntry)));
 		}
@@ -42,7 +42,7 @@ namespace RedisListener.Binding
 			return Task.FromResult(listener);
 		}
 
-		internal static IReadOnlyDictionary<string, object> CreateBindingData(StreamEntry value)
+		internal static IReadOnlyDictionary<string, object> CreateBindingData(string value)
 		{
 			var bindingData = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase) {{nameof(value), value}};
 
@@ -53,7 +53,7 @@ namespace RedisListener.Binding
 		{
 			var contract = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
 			{
-				["StreamEntry"] = typeof(StreamEntry),
+				["StreamEntry"] = typeof(string),
 			};
 
 			return contract;

@@ -14,19 +14,15 @@ namespace RedisListener.ValueBinding
 	{
 		public Type Type { get; }
 
-		private readonly StreamEntry _streamEntry;
+		private readonly String _streamEntry;
 
 		private readonly JsonSerializerOptions _options;
 
-		public RedisTriggerValueProvider(StreamEntry streamEntry, Type requestedParameterType)
+		public RedisTriggerValueProvider(String streamEntry, Type requestedParameterType)
 		{
 			Type = requestedParameterType;
 			_streamEntry = streamEntry;
 
-			var options = new JsonSerializerOptions();
-			options.Converters.Add(new StreamEntryJsonConverter());
-			options.Converters.Add(new NameValueEntryConverter());
-			_options = options;
 		}
 
 		public Task<object> GetValueAsync() => Task.FromResult<object>(ToInvokeString());

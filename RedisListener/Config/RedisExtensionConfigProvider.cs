@@ -24,7 +24,7 @@ namespace RedisListener.Config
 
 		public async Task<IConnectionMultiplexer> CreateMultiplexer(RedisTriggerAttribute triggerAttribute)
 		{
-			return await ConnectionMultiplexer.ConnectAsync(GetValueOrSecretFromConfig(triggerAttribute.ConnectionString));
+			return null;
 		}
 
 		private string GetValueOrSecretFromConfig(string value)

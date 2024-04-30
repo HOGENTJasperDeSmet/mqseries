@@ -7,13 +7,15 @@
 
   <PropertyGroup>
     <PackageId>RedisListener</PackageId>
-    <Version>1.1.13</Version>
+    <Version>1.1.24</Version>
     <Authors>unknown</Authors>
     <Company>unknown company</Company>
     <IncludeSymbols>True</IncludeSymbols>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IBMXMSDotnetClient" Version="9.3.5" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="1.12.1" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.37" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.116" />
